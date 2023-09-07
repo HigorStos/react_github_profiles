@@ -4,7 +4,8 @@ import styles from './ReposList.module.css';
 
 const ReposList = ({ username }) => {
     const [repos, setRepos] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -16,11 +17,14 @@ const ReposList = ({ username }) => {
                 setRepos(resJson);
             }, 3000);
         })
+        .catch(e => setError(true))
     }, [username]);
 
     return (
         <div className="container">
-            {loading ? (
+            { error ? (
+                <h1>API Error!</h1>
+            ) : loading ? (
                 <h1>Loading...</h1>
             ) : (
                 <ul className={styles.list}>

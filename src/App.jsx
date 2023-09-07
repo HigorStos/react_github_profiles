@@ -4,35 +4,28 @@ import ReposList from "./components/ReposList";
 
 function App() {
   const [user, setUser] = useState('');
-  const [inputValue, setInputValue] = useState('');
-
-  function handleInputChange(event) {
-    const value = event.target.value;
-    setInputValue(value);
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setUser(inputValue);
-  }
 
   return (
     <>
       <div className='container'>
-        <form onSubmit={handleSubmit} className='form'>
+        <form className='form'>
           <input
-            value={inputValue}
-            onChange={handleInputChange}
+            onBlur={e => setUser(e.target.value)}
             className='formInput'
             type="text"
             placeholder='GitHub User'
           />
-          <button className='formButton' type="submit">Search</button>
+          <button className='formButton' type="button">Search</button>
         </form>
       </div>
+
+      {user.length > 0 && (
+        <>
+          <Profile username={user} />
+          <ReposList username={user} />
+        </>
+      )}
       
-      <Profile username={user} />
-      <ReposList username={user} />
     </>
   )
 }
