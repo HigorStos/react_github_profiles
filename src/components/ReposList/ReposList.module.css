@@ -1,0 +1,26 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.listItem {
+    list-style: none;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.itemName b, .itemLanguage b {
+    margin-right: 8px;
+}
+
+.itemLink {
+    display: block;
+    margin-top: 8px;
+    padding: 8px;
+    background-color: var(--mainColor);
+    color: var(--secondaryColor);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
